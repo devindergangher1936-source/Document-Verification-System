@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document Verification</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z M14 3v5h5 M9 14l2 2 4-4"/></svg>
+      <span>Document Verification</span>
+    </div>
+    <span id="ocr-badge" class="badge"></span>
+  </header>
+
+  <main class="wrap">
+    <section class="stats" id="stats"></section>
+
+    <section class="card upload">
+      <h2>Verify a document</h2>
+      <div class="upload-row">
+        <label class="field">
+          <span>Document type</span>
+          <select id="doc-type"></select>
+        </label>
+        <label id="drop" class="drop" tabindex="0">
+          <input id="file" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.webp,.bmp" hidden>
+          <strong>Drop files here</strong> or click to browse
+          <small>PDF, JPG, PNG, TIFF, WEBP · max <span id="max-mb">25</span> MB</small>
+        </label>
+      </div>
+      <ul id="upload-log" class="upload-log"></ul>
+    </section>
+
+    <section class="card">
+      <div class="list-head">
+        <div class="tabs" id="tabs">
+          <button data-status="" class="active">All</button>
+          <button data-status="flagged">Flagged</button>
+          <button data-status="review">Needs review</button>
+          <button data-status="passed">Passed</button>
+          <button data-status="pending">Pending decision</button>
+        </div>
+        <input id="search" type="search" placeholder="Search file, type or text…">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>File</th><th>Type</th><th>Uploaded</th><th>Risk</th><th>Auto check</th><th>Decision</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <p id="empty" class="empty" hidden>No documents yet. Upload one above.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="drawer" class="drawer" hidden>
+    <div class="drawer-backdrop" data-close></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true">
+      <button class="close" data-close aria-label="Close">&times;</button>
+      <div id="detail"></div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
